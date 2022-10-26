@@ -1,0 +1,71 @@
+# |-------------------------------------------------------------------------------
+# | Nodeserver Copyright © 2021 rvnrstnsyh All Rights Reserved
+# |-------------------------------------------------------------------------------
+# |
+# | Author    : Rivane Rasetiansyah <re@rvnrstnsyh.dev> (https://rvnrstnsyh.dev)
+# | GitHub    : https://github.com/rvnrstnsyh
+# | GitLab    : https://gitlab.com/rvnrstnsyh
+# |
+
+# ! +--------------------------------------------------------------------------+
+# ! | RESTful API endpoint                                                     |
+# ! |                                                                          |
+# ! | [endpoint QUERY]                                                         |
+# ! | --                                                                       |
+# ! | f  : Find                                                                |
+# ! | qf : Query Function                                                      |
+# ! +--------------------------------------------------------------------------+
+
+# ? +--------------------------------------------------------------------------+
+# ? | GET all users data [isAuth]                                              |
+# ? +--------------------------------------------------------------------------+
+GET http://localhost:3000/api/users
+Authorization: Bearer <access_token>
+###
+
+
+# ? +--------------------------------------------------------------------------+
+# ? | GET user data by identity (username/email) [isAuth]                      |
+# ? +--------------------------------------------------------------------------+
+GET http://localhost:3000/api/users?f=re@rvnrstnsyh.dev
+###
+
+
+# ? +--------------------------------------------------------------------------+
+# ? | POST create new user (register)                                          |
+# ? +--------------------------------------------------------------------------+
+POST  http://localhost:3000/api/users?qf=register
+Content-Type: application/json
+
+{
+  "username": "rvnrstnsyh",
+  "email": "re@rvnrstnsyh.dev",
+  "register_password": "haveaniceday!"
+}
+###
+
+
+# ? +--------------------------------------------------------------------------+
+# ? | POST verify user and authenticate (login)                                |
+# ? +--------------------------------------------------------------------------+
+POST  http://localhost:3000/api/users?qf=login
+Content-Type: application/json
+
+{
+  "identity": "re@rvnrstnsyh.dev",
+  "login_password": "haveaniceday!"
+}
+###
+
+
+# ? +--------------------------------------------------------------------------+
+# ? | GET generate new access_token                                            |
+# ? +--------------------------------------------------------------------------+
+GET http://localhost:3000/api/session
+###
+
+
+# ? +--------------------------------------------------------------------------+
+# ? | DELETE logout, delete session cookies and remove session in database     |
+# ? +--------------------------------------------------------------------------+
+DELETE http://localhost:3000/api/users?qf=terminate

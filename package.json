@@ -1,0 +1,58 @@
+{
+    "name": "nodeserver",
+    "version": "1.1.5",
+    "description": "Back-End node server",
+    "main": "index.js",
+    "type": "module",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "https://gitlab.com/rvnrstnsyh/nodeserver.git"
+    },
+    "bugs": {
+        "url": "https://gitlab.com/rvnrstnsyh/nodeserver/-/issues",
+        "email": "re@rvnrstnsyh.dev"
+    },
+    "scripts": {
+        "dev": "nodemon index",
+        "start": "node index"
+    },
+    "keywords": [
+        "nodejs",
+        "server",
+        "backend",
+        "api"
+    ],
+    "author": "Rivane Rasetiansyah <re@rvnrstnsyh.dev> (https://rvnrstnsyh.dev)",
+    "contributors": [
+        "Rivane Rasetiansyah <re@rvnrstnsyh.dev> (https://rvnrstnsyh.dev)"
+    ],
+    "license": "MIT",
+    "engines": {
+        "node": ">= 16.14.0",
+        "npm": ">= 8.5.5",
+        "yarn": ">= 1.22.17"
+    },
+    "dependencies": {
+        "argon2": "^0.30.1",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "crypto-js": "^4.1.1",
+        "csurf": "^1.11.0",
+        "dayjs": "^1.11.6",
+        "dotenv": "^16.0.3",
+        "eccrypto": "^1.1.6",
+        "ejs": "^3.1.8",
+        "elliptic": "^6.5.4",
+        "express": "^4.18.2",
+        "express-rate-limit": "^6.6.0",
+        "jsonwebtoken": "^8.5.1",
+        "moment-timezone": "^0.5.38",
+        "mongoose": "^6.7.0",
+        "morgan": "^1.10.0",
+        "socket.io": "^4.5.3"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.20"
+    }
+}

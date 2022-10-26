@@ -1,0 +1,227 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+::-moz-selection {
+    color: red;
+    background: transparent;
+}
+
+::selection {
+    color: red;
+    background: transparent;
+}
+
+body,
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+*,
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.noscript {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    font-size: 0.65em;
+    text-align: center;
+    color: red;
+}
+
+a {
+    color: #2f7bbf;
+    text-decoration: none;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.15s;
+    transition-duration: 0.15s;
+    -webkit-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a:hover {
+    color: #551a8b;
+    text-decoration: underline;
+}
+
+pre {
+    overflow-x: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ! Main page */
+
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@font-face {
+    font-family: "Rounded Elegance";
+    src: url("../font/Rounded_Elegance.ttf") format("truetype");
+}
+
+.front_page-article {
+    min-height: 100vh;
+    background: #f9f9f9;
+}
+
+.front_page-section-PGP {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.front_page-section-PGP .signatures {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: monospace;
+}
+
+.front_page-section-PGP .signatures .wrapper {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.front_page-section-PGP .signatures .wrapper h1 {
+    font-family: "Rounded Elegance";
+    font-size: 2.8em;
+    font-weight: 500;
+    margin-bottom: -10px;
+}
+
+.front_page-section-PGP .signatures .wrapper h1 a {
+    color: black;
+    text-decoration: none;
+}
+
+.front_page-section-PGP .keycapsule {
+    display: flex;
+    justify-content: center;
+}
+
+.front_page-section-PGP .hand_signature {
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.keycapsule pre {
+    font-size: 0.6em;
+    line-height: 1em;
+    min-height: 185px;
+    color: gray;
+    -webkit-touch-callout: all !important;
+    -webkit-user-select: all !important;
+    -khtml-user-select: all !important;
+    -moz-user-select: all !important;
+    -ms-user-select: all !important;
+    user-select: all !important;
+    z-index: 100 !important;
+}
+
+.keycapsule .publicqr {
+    max-width: 100%;
+}
+
+.library__section .container,
+.article__section .container {
+    max-width: 550px;
+    font-family: monospace;
+    line-height: 1.1em;
+}
+
+.article__section p {
+    font-size: 0.8em;
+}
+
+.article__section .title__header-article {
+    background: #eee;
+}
+
+.article__section pre {
+    color: gray;
+    font-size: 0.8em;
+}
+
+.page__title {
+    font-family: "Rounded Elegance";
+    font-size: 2.8em;
+    font-weight: 500;
+}
+
+.show {
+    position: relative;
+    opacity: 1;
+}
+
+@media (max-width: 500px) {
+    .keycapsule .publicqr {
+        margin-left: 34px !important;
+    }
+    .front_page-section-PGP .keycapsule {
+        margin-bottom: 3px;
+    }
+
+    .front_page-section-PGP .signatures {
+        font-size: 0.7em;
+    }
+
+    .front_page-section-PGP .signatures .wrapper h1 {
+        font-size: 3.2em;
+    }
+
+    .front_page-section-PGP .hand_signature {
+        width: 175px;
+        top: 56.5%;
+    }
+
+    .front_page-section-PGP .upper_menu a {
+        font-size: 1em;
+    }
+
+    .front_page-section-PGP .bottom_menu a {
+        font-size: 0.9em;
+    }
+
+    .keycapsule pre {
+        font-size: 0.45em;
+        line-height: 1.25em;
+        min-height: auto;
+    }
+
+    .article__section p {
+        font-size: 0.6em;
+    }
+
+    .article__section .container {
+        max-width: 99%;
+    }
+
+    .article__section pre {
+        font-size: 0.6em;
+    }
+}
