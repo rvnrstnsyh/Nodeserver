@@ -11,16 +11,8 @@
 
 "use strict";
 
-export default class WebController {
-    /**
-     * !-- VIEWS (SSR)
-     *
-     * @return render HTML [EJS]
-     */
-    static async index(request, response) {
-        response.status(200).render("home", {
-            csrfToken: request.csrfToken(),
-            layout: "../layouts/indexssr",
-        });
-    }
-}
+const socket = io();
+
+socket.on("connection_response", (response) => {
+    console.log(response.message);
+});

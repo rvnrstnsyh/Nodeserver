@@ -38,7 +38,7 @@ Nodeserver is a Back-End server template or framework that has been prepared in 
 First create a MongoDB database (default **nodeserver_db**), configurable in `.env` file.
 ```shell
 $ git clone https://gitlab.com/rvnrstnsyh/nodeserver.git
-$ cd nodeserver && ./install.sh
+$ cd nodeserver && bash install.sh
 ```
 Open in browser on default host and port http://localhost:3000
 

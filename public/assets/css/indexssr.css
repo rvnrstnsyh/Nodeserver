@@ -1,0 +1,57 @@
+/*
+|-------------------------------------------------------------------------------
+| Nodeserver Copyright © 2021 rvnrstnsyh All Rights Reserved
+|-------------------------------------------------------------------------------
+|
+| Author    : Rivane Rasetiansyah <re@rvnrstnsyh.dev> (https://rvnrstnsyh.dev)
+| GitHub    : https://github.com/rvnrstnsyh
+| GitLab    : https://gitlab.com/rvnrstnsyh
+|
+*/
+
+@font-face {
+    font-family: "Rounded Elegance";
+    src: url("../font/Rounded_Elegance.ttf") format("truetype");
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+::-moz-selection {
+    color: red;
+    background: transparent;
+}
+
+::selection {
+    color: red;
+    background: transparent;
+}
+
+body,
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+*,
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    text-decoration: none;
+}
+
+#noscript {
+    color: red;
+}

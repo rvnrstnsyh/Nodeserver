@@ -13,30 +13,33 @@
 
 import mongoose from "mongoose";
 
-const UserSchema = mongoose.Schema({
-    username: {
-        type: String,
-        unique: true,
+const UserSchema = mongoose.Schema(
+    {
+        username: {
+            type: String,
+            unique: true,
+        },
+        email: {
+            type: String,
+            unique: true,
+        },
+        password: {
+            type: String,
+        },
+        session: {
+            type: String,
+            default: "",
+        },
+        created_at: {
+            type: String,
+            default: "",
+        },
+        updated_at: {
+            type: String,
+            default: "",
+        },
     },
-    email: {
-        type: String,
-        unique: true,
-    },
-    password: {
-        type: String,
-    },
-    session: {
-        type: String,
-        default: "",
-    },
-    created_at: {
-        type: String,
-        default: "",
-    },
-    updated_at: {
-        type: String,
-        default: "",
-    },
-});
+    { versionKey: false }
+);
 
 export default mongoose.model("User", UserSchema);

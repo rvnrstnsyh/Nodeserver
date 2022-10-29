@@ -15,11 +15,15 @@
 // ! | Dependencies                                                             |
 // ! +--------------------------------------------------------------------------+
 import dotenv from "dotenv";
+import fs from "fs";
 import http from "http";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import PATH from "path";
+import expressLayouts from "express-ejs-layouts";
+import morgan from "morgan";
+import helmet from "helmet";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -63,6 +67,9 @@ const limiter = rateLimit({
 // ?  Apply to all web requests
 App.use(limiter);
 
+// ? Secure App by setting various HTTP headers
+App.use(helmet({ contentSecurityPolicy: false }));
+
 // ! +--------------------------------------------------------------------------+
 // ! | Express configurations                                                   |
 // ! +--------------------------------------------------------------------------+
@@ -70,6 +77,11 @@ import RESTful_API from "./routes/api.js";
 import webRoutes from "./routes/web.js";
 
 const SSR = process.env.NODE_SSR.toLowerCase() === "true";
+const accessLogStream = fs.createWriteStream(
+    PATH.join(__dirname, "access.log"),
+    { flags: "a" }
+);
+const accessLogFormat = `:remote-addr - :remote-user [:date[iso]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"`;
 
 App.use((request, response, next) => {
     console.log(`${request.method} ${URI}${request.url}`);
@@ -83,18 +95,23 @@ App.use((request, response, next) => {
     //   next();
     // }
 })
+    .use(morgan(accessLogFormat, { stream: accessLogStream }))
     .use(cors(CONF))
     .use(cookieParser())
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
     .set("view engine", "ejs")
+    .use(expressLayouts)
     .use(express.static(PATH.join(__dirname + "/public")))
     .use("/api", RESTful_API)
     .use("/", SSR ? webRoutes : express.static(PATH.join(__dirname, "/dist")))
     .get(/.*/, csrfProtection, (request, response) => {
         response
             .cookie("nodeserver_key", request.csrfToken())
-            .render(PATH.join(__dirname, SSR ? "/views/ssr" : "/dist/index"));
+            .render(PATH.join(__dirname, SSR ? "/views/home" : "/dist/index"), {
+                csrfToken: request.csrfToken(),
+                layout: "../layouts/indexssr",
+            });
     });
 
 // ! +--------------------------------------------------------------------------+

@@ -15,23 +15,25 @@ install(){
 
   yarn add \
             argon2@latest \
+            cookie-parser@latest \
+            cors@latest \
+            crypto-js@latest \
+            csurf@latest \
             dayjs@latest \
+            dotenv@latest \
+            eccrypto@latest \
+            ejs@latest \
+            elliptic@latest \
+            express@latest \
+            express-ejs-layouts@latest \
+            express-rate-limit@latest \
+            helmet@latest \
+            jsonwebtoken@latest \
             moment-timezone@latest \
             mongoose@latest \
             morgan@latest \
-            jsonwebtoken@latest \
-            cookie-parser@latest \
-            cors@latest \
-            csurf@latest \
-            dotenv@latest \
-            ejs@latest \
-            express@latest \
-            express-rate-limit@latest \
-            socket.io@latest \
             nodemon@latest \
-            eccrypto@latest \
-            crypto-js@latest \
-            elliptic@latest && \
+            socket.io@latest && \
 
   cp .env.example .env && yarn dev
 } || { # Catch
@@ -39,23 +41,25 @@ install(){
 
   npm install \
             argon2@latest \
+            cookie-parser@latest \
+            cors@latest \
+            crypto-js@latest \
+            csurf@latest \
             dayjs@latest \
+            dotenv@latest \
+            eccrypto@latest \
+            ejs@latest \
+            elliptic@latest \
+            express@latest \
+            express-ejs-layouts@latest \
+            express-rate-limit@latest \
+            helmet@latest \
+            jsonwebtoken@latest \
             moment-timezone@latest \
             mongoose@latest \
             morgan@latest \
-            jsonwebtoken@latest \
-            cookie-parser@latest \
-            cors@latest \
-            csurf@latest \
-            dotenv@latest \
-            ejs@latest \
-            express@latest \
-            express-rate-limit@latest \
-            socket.io@latest \
             nodemon@latest \
-            eccrypto@latest \
-            crypto-js@latest \
-            elliptic@latest && \
+            socket.io@latest && \
 
   cp .env.example .env && npm run dev
  }
