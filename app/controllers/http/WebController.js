@@ -11,6 +11,8 @@
 
 "use strict";
 
+import CaptchaFactory from "../../../functions/CaptchaFactory.js";
+
 export default class WebController {
     /**
      * !-- VIEWS (SSR)
@@ -18,20 +20,34 @@ export default class WebController {
      * @return render HTML [EJS]
      */
     static async sign_in(request, response) {
-        return response.status(200).render("sign_in", {
-            csrfToken: request.csrfToken(),
-            layout: "../layouts/indexssr",
-            successMsg: request.flash("success"),
-            errorsMsg: request.flash("error"),
-        });
+        const { data, text, config } = CaptchaFactory.create();
+
+        return response
+            .status(200)
+            .cookie("captcha", text, config)
+            .render("sign_in", {
+                csrfToken: request.csrfToken(),
+                layout: "../layouts/indexssr",
+                successMsg: request.flash("success"),
+                errorsMsg: request.flash("error"),
+                captcha: data,
+                invalid_captcha: request.flash("invalid_captcha"),
+            });
     }
     static async sign_up(request, response) {
-        return response.status(200).render("sign_up", {
-            csrfToken: request.csrfToken(),
-            layout: "../layouts/indexssr",
-            successMsg: request.flash("success"),
-            errorsMsg: request.flash("error"),
-        });
+        const { data, text, config } = CaptchaFactory.create();
+
+        return response
+            .status(200)
+            .cookie("captcha", text, config)
+            .render("sign_up", {
+                csrfToken: request.csrfToken(),
+                layout: "../layouts/indexssr",
+                successMsg: request.flash("success"),
+                errorsMsg: request.flash("error"),
+                captcha: data,
+                invalid_captcha: request.flash("invalid_captcha"),
+            });
     }
     static async cpanel(request, response) {
         return response.status(200).render("cpanel", {

@@ -18,6 +18,14 @@
         <br />
         <input type="password" name="confirm_password" placeholder="Confirm" />
         <br />
+        <% if (captcha) { %>
+        <div class="captcha_svg">
+            <%- captcha %>
+        </div>
+          <% } %>
+        <br />
+        <input type="text" name="captcha_plain" placeholder="CAPTCHA" />
+        <br />
         <input type="submit" value="Sign Up" />
     </form>
 
@@ -27,6 +35,9 @@
               <small><%= error.msg %></small>
               <br />
             <% }) %>
+        <% } %>
+        <% if (invalid_captcha.length !== 0) { %>
+          <small><%= invalid_captcha %></small>
         <% } %>
     </div>
 

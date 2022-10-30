@@ -77,6 +77,12 @@ a {
     margin-bottom: 5px;
 }
 
+#signin_form .captcha_svg,
+#signup_form .captcha_svg {
+    margin-top: -4px;
+    margin-bottom: -20px;
+}
+
 .notebook_signin,
 .notebook_signup {
     font-size: 0.8em;

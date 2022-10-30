@@ -11,24 +11,29 @@
 
 "use strict";
 
+import CryptoJS from "crypto-js";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-export default class Error {
+export default class Captcha {
     /**
-     *  !-- CHECK (Middleware)
-     *  redirect to error handler page
+     *  !-- VERIFY (Middleware)
+     *  validate captcha
      *
      * @return redirect
      */
-    static check(request, response, next) {
-        try {
-            const message = request.flash("invalid");
-            request.flash("invalid", message);
+    static verify(request, response, next) {
+        const plain = CryptoJS.SHA256(request.body.captcha_plain).toString();
+        const cipher = request.cookies.captcha;
+        const match = plain === cipher;
+        const previous = request.cookies.from;
+
+        if (!match) {
+            request.flash("invalid_captcha", "Invalid captcha.");
+            return response.redirect(previous);
+        } else {
             return next();
-        } catch (error) {
-            return response.redirect("/");
         }
     }
 }

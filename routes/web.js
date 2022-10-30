@@ -29,9 +29,12 @@ const route = express.Router();
 // ! | Cross-site request forgery (CSRF) Global middleware for web SSR          |
 // ! +--------------------------------------------------------------------------+
 import * as middleware from "../app/middleware/_index.js";
+import CaptchaFactory from "../functions/CaptchaFactory.js";
 
 route.use(middleware.csrf, (request, response, next) => {
-    response.cookie("nodeserver_key", request.csrfToken());
+    const { cookie } = CaptchaFactory.create();
+    response.cookie("from", request.url, cookie);
+    response.cookie("nodeserver_key", request.csrfToken(), cookie);
     next();
 });
 

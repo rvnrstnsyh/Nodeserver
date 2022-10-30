@@ -61,7 +61,7 @@ export default class Auth {
                         return response.clearCookie("session").redirect("/");
                     } else {
                         request.body.auth = auth;
-                        next();
+                        return next();
                     }
                 }
             });
@@ -101,7 +101,7 @@ export default class Auth {
                 }
             });
         } else {
-            next();
+            return next();
         }
     }
 }

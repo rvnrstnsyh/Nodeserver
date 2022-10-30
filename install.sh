@@ -37,6 +37,7 @@ install(){
             morgan@latest \
             nodemon@latest \
             socket.io@latest \
+            svg-captcha@latest \
             uuid@latest && \
 
   cp .env.example .env && yarn dev
@@ -67,6 +68,7 @@ install(){
             morgan@latest \
             nodemon@latest \
             socket.io@latest \
+            svg-captcha@latest \
             uuid@latest && \
 
   cp .env.example .env && npm run dev

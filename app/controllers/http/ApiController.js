@@ -16,6 +16,7 @@ import argon2 from "argon2";
 import moment from "moment-timezone";
 import UserFinder from "../../../functions/UserFinder.js";
 import TokenFactory from "../../../functions/TokenFactory.js";
+import CaptchaFactory from "../../../functions/CaptchaFactory.js";
 import dotenv from "dotenv";
 import { validationResult } from "express-validator";
 import { v4 as uuidv4 } from "uuid";
@@ -35,6 +36,7 @@ export default class ApiController {
 
         // ? request body validation
         const valid = validationResult(request);
+
         if (!valid.isEmpty()) {
             request.flash("error", valid.errors);
             return response.redirect("/");
@@ -42,13 +44,14 @@ export default class ApiController {
 
         // ? execute sign in
         const { identity } = request.body;
-        const uV = await UserFinder.find(identity);
+        const { config } = CaptchaFactory.create();
+        const user = await UserFinder.find(identity);
 
         const credentials = {
-            _id: uV._id,
+            _id: user._id,
             uuidv4: uuidv4(),
-            username: uV.username,
-            email: uV.email,
+            username: user.username,
+            email: user.email,
         };
 
         const newToken = TokenFactory.create(credentials);
@@ -59,17 +62,13 @@ export default class ApiController {
         };
 
         await UserModel.findOneAndUpdate(
-            { email: uV.email },
+            { email: user.email },
             { $push: { session: session } }
         );
 
         return response
             .status(200)
-            .cookie("session", newToken.session, {
-                httpOnly: true,
-                maxAge: 24 * 60 * 60 * 1000, // ? 1 day
-                secure: ssl,
-            })
+            .cookie("session", newToken.session, config)
             .redirect("/cpanel");
     }
 
@@ -83,6 +82,7 @@ export default class ApiController {
 
         // ? request body validation
         const valid = validationResult(request);
+
         if (!valid.isEmpty()) {
             request.flash("error", valid.errors);
             return response.redirect("/sign_up");

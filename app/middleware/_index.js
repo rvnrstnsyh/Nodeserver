@@ -12,7 +12,8 @@
 "use strict";
 
 import auth from "./Auth.js";
+import captcha from "./Captcha.js";
 import error from "./Error.js";
 import csrf from "./Csrf.js";
 
-export { auth, error, csrf };
+export { auth, captcha, error, csrf };
