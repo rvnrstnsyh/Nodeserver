@@ -27,8 +27,8 @@ const UserSchema = mongoose.Schema(
             type: String,
         },
         session: {
-            type: String,
-            default: "",
+            type: Array,
+            default: [],
         },
         created_at: {
             type: String,

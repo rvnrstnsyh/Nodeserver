@@ -44,4 +44,9 @@ route.get("/", [middleware.auth.check], controller.web.sign_in);
 route.get("/sign_up", [middleware.auth.check], controller.web.sign_up);
 route.get("/cpanel", [middleware.auth.verify], controller.web.cpanel);
 
+// ! +--------------------------------------------------------------------------+
+// ! | Error handler                                                            |
+// ! +--------------------------------------------------------------------------+
+route.get("/handler", [middleware.error.check], controller.web.handler);
+
 export default route;

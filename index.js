@@ -102,7 +102,7 @@ App.use((request, response, next) => {
     .use(cookieParser("secret"))
     .use(
         session({
-            cookie: { maxAge: 6000 },
+            cookie: { maxAge: 3600 },
             secret: "secret",
             resave: true,
             saveUninitialized: true,
@@ -116,7 +116,18 @@ App.use((request, response, next) => {
     .use(express.static(PATH.join(__dirname + "/public")))
     .use("/api", RESTful_API)
     .use("/", SSR ? webRoutes : express.static(PATH.join(__dirname, "/dist")))
-    .get(/.*/, (request, response) => response.sendStatus(404));
+    .get(/.*/, middleware.csrf, (request, response) => {
+        if (SSR) {
+            return response.sendStatus(404);
+        } else {
+            return response
+                .cookie("nodeserver_key", request.csrfToken())
+                .render(PATH.join(__dirname, "/dist/index"), {
+                    csrfToken: request.csrfToken(),
+                    layout: "../layouts/indexssr",
+                });
+        }
+    });
 
 // ! +--------------------------------------------------------------------------+
 // ! | Database connection (Default MongoDB)                                    |

@@ -11,6 +11,7 @@
 
 "use strict";
 
+import UserModel from "../models/User.js";
 import security from "jsonwebtoken";
 import dotenv from "dotenv";
 
@@ -30,12 +31,38 @@ export default class Auth {
         if (!valid) {
             return response.redirect("/");
         } else {
-            security.verify(valid, accessKey, (error, auth) => {
+            security.verify(valid, accessKey, async (error, auth) => {
                 if (error) {
+                    // ? if valid and expired, delete matching session in database
+                    const users = await UserModel.find();
+                    users.forEach((user) => {
+                        user.session.forEach(async (token) => {
+                            if (token.value === valid) {
+                                const newSession = user.session.filter(
+                                    (data) => data.value !== valid
+                                );
+                                await UserModel.findOneAndUpdate(
+                                    { email: user.email },
+                                    { session: newSession }
+                                );
+                            }
+                        });
+                    });
                     return response.clearCookie("session").redirect("/");
                 } else {
-                    request.body.auth = auth;
-                    next();
+                    const user = await UserModel.findOne({ email: auth.email });
+                    let tokenExists = false;
+
+                    user.session.forEach((token) => {
+                        if (token.value === valid) tokenExists = true;
+                    });
+
+                    if (!tokenExists) {
+                        return response.clearCookie("session").redirect("/");
+                    } else {
+                        request.body.auth = auth;
+                        next();
+                    }
                 }
             });
         }
@@ -51,11 +78,26 @@ export default class Auth {
         const accessKey = process.env.SESSION_KEY;
 
         if (valid) {
-            security.verify(valid, accessKey, (error, auth) => {
+            security.verify(valid, accessKey, async (error, auth) => {
                 if (error) {
+                    // ? if valid and expired, delete matching session in database
+                    const users = await UserModel.find();
+                    users.forEach((user) => {
+                        user.session.forEach(async (token) => {
+                            if (token.value === valid) {
+                                const newSession = user.session.filter(
+                                    (data) => data.value !== valid
+                                );
+                                await UserModel.findOneAndUpdate(
+                                    { email: user.email },
+                                    { session: newSession }
+                                );
+                            }
+                        });
+                    });
                     return response.clearCookie("session").redirect("/");
                 } else {
-                    response.redirect("/cpanel");
+                    return response.redirect("/cpanel");
                 }
             });
         } else {

@@ -59,12 +59,14 @@ a {
 
 #signin_container,
 #signup_container,
-#cpanel_container {
+#cpanel_container,
+#error_handler_container {
     padding: 10px;
     max-width: 517px;
 }
 #signin_container .warp .img_one,
-#signup_container .warp .img_one {
+#signup_container .warp .img_one,
+#error_handler_container .warp .img_one {
     max-width: 85px;
     margin-bottom: -20px;
 }

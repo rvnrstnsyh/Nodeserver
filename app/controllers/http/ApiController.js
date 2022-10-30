@@ -18,6 +18,7 @@ import UserFinder from "../../../functions/UserFinder.js";
 import TokenFactory from "../../../functions/TokenFactory.js";
 import dotenv from "dotenv";
 import { validationResult } from "express-validator";
+import { v4 as uuidv4 } from "uuid";
 
 dotenv.config();
 
@@ -45,18 +46,22 @@ export default class ApiController {
 
         const credentials = {
             _id: uV._id,
+            uuidv4: uuidv4(),
             username: uV.username,
             email: uV.email,
         };
 
         const newToken = TokenFactory.create(credentials);
 
+        const session = {
+            uuidv4: credentials.uuidv4,
+            value: newToken.session,
+        };
+
         await UserModel.findOneAndUpdate(
             { email: uV.email },
-            { session: newToken.session }
+            { $push: { session: session } }
         );
-
-        request.flash("access_token", newToken.access);
 
         return response
             .status(200)
@@ -66,7 +71,6 @@ export default class ApiController {
                 secure: ssl,
             })
             .redirect("/cpanel");
-        // ! END LOGIN ---
     }
 
     static async sign_up(request, response) {
@@ -110,22 +114,29 @@ export default class ApiController {
          */
         try {
             const session = request.cookies.session;
+            const users = await UserModel.find();
 
             if (!session) {
                 return response.sendStatus(204);
             }
-            const user = await UserModel.findOne({ session });
-            if (!user && user.session !== session) {
-                return response.sendStatus(204);
-            }
-            await UserModel.findOneAndUpdate(
-                { email: user.email },
-                { session: null }
-            );
-            response.clearCookie("session").status(200).redirect("/");
+
+            users.forEach((user) => {
+                user.session.forEach(async (token) => {
+                    if (token.value === session) {
+                        const newSession = user.session.filter(
+                            (data) => data.value !== session
+                        );
+                        await UserModel.findOneAndUpdate(
+                            { email: user.email },
+                            { session: newSession }
+                        );
+                    }
+                });
+            });
+            return response.clearCookie("session").status(200).redirect("/");
         } catch (error) {
             console.log(error);
-            response.status(200).redirect("/");
+            return response.status(200).redirect("/");
         }
     }
 }

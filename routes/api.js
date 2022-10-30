@@ -25,19 +25,17 @@ const route = express.Router();
 |
 */
 
-
 // ! +--------------------------------------------------------------------------+
 // ! | Cross-site request forgery (CSRF) middleware for web SSR                 |
 // ! +--------------------------------------------------------------------------+
-import * as middleware from "../app/middleware/_index.js"
+import * as middleware from "../app/middleware/_index.js";
 import * as validator from "../app/validators/forms/_index.js";
 
 // ! +--------------------------------------------------------------------------+
 // ! | Controller and routes                                                    |
 // ! +--------------------------------------------------------------------------+
 // import ApiController from "../app/controllers/http/asdasd.js";
-import * as controllers from "../app/controllers/http/_index.js"
-
+import * as controllers from "../app/controllers/http/_index.js";
 
 route.post("/sign_in", [middleware.csrf, validator.sign_in], controllers.api.sign_in);
 route.post("/sign_up", [middleware.csrf, validator.sign_up], controllers.api.sign_up);

@@ -11,7 +11,7 @@
 
 "use strict";
 
-import csrf from "csurf";
-const csrfProtection = csrf({ cookie: true });
+import csrf from "../modules/csurf/index.js";
+const csrfProtection = csrf({ cookie: { httpOnly: true, maxAge: 3600 } });
 
 export default csrfProtection;

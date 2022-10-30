@@ -19,7 +19,7 @@ install(){
             cookie-parser@latest \
             cors@latest \
             crypto-js@latest \
-            csurf@latest \
+            csrf@latest \
             dayjs@latest \
             dotenv@latest \
             eccrypto@latest \
@@ -36,7 +36,8 @@ install(){
             mongoose@latest \
             morgan@latest \
             nodemon@latest \
-            socket.io@latest && \
+            socket.io@latest \
+            uuid@latest && \
 
   cp .env.example .env && yarn dev
 } || { # Catch
@@ -48,7 +49,7 @@ install(){
             cookie-parser@latest \
             cors@latest \
             crypto-js@latest \
-            csurf@latest \
+            csrf@latest \
             dayjs@latest \
             dotenv@latest \
             eccrypto@latest \
@@ -65,7 +66,8 @@ install(){
             mongoose@latest \
             morgan@latest \
             nodemon@latest \
-            socket.io@latest && \
+            socket.io@latest \
+            uuid@latest && \
 
   cp .env.example .env && npm run dev
  }

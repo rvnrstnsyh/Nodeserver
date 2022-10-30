@@ -1,0 +1,12 @@
+<div id="error_handler_container">
+  <div class="warp">
+    <% if (invalid.length !== 0) { %>
+      <img src="assets/img/noun-forbidden-1433603.svg" alt="forbidden" class="img_one">
+      <small><%= invalid %></small><br />
+      <small>
+        You just did something illegal, correct your attitude and return to the
+        <a href="/">main page</a> or refresh this page.
+      </small>
+    <% } %>
+  </div>
+</div>
