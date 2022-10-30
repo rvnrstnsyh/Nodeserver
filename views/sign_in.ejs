@@ -1,0 +1,62 @@
+<div id="signin_container">
+  <div class="warp">
+    <h3> Server-side rendering </h3>
+  
+    <% if (successMsg.length !== 0) { %>
+      <small><%= successMsg %></small>
+    <% } %>
+  
+    <br />
+    <h6 class="lead_title">Sign In</h6>
+    <form action="/api/sign_in" method="post" id="signin_form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <input type="text" name="identity" placeholder="Username or email address " />
+        <br />
+        <input type="password" name="signin_password" placeholder="Password" />
+        <br />
+        <input type="submit" value="Sign In" />
+    </form>
+
+    <div>
+        <% if (typeof errorsMsg !== undefined) { %>
+            <% errorsMsg.forEach(error => { %>
+              <small><%= error.msg %></small>
+              <br />
+            <% }) %>
+        <% } %>
+    </div>
+
+    <br />
+    <a href="/sign_up"><small>Click here to Sign Up</small></a>
+    <br />
+    <br />
+
+    <div class="notebook_signin">
+      <small>This proves that CSRF really work as they should:</small><br />
+      <small><b><%= csrfToken %></b></small>
+    </div>
+
+    <br />
+
+    <h4>
+      <img src="assets/img/noun-cookies-1342244.svg" alt="httponly" class="img_one">
+      HttpOnly Cookie
+    </h4>
+    <hr />
+    <small>
+      HttpOnly is a flag the website can specify about a cookie. In other words,
+      the webserver tells your browser “Hey, here is a cookie, and you should
+      treat is as HttpOnly”. An HttpOnly Cookie is not accessible by the
+      JavaScript. Only the browser knows about it, and it doesn't give it to the
+      JavaScript code in the page. At first, it might sound like a limitation, and
+      it is. However, the goal of that is that we cannot trust the JavaScript
+      code. An attacker may use JavaScript to steal our authentication token
+      stored in a cookie, and then access the website with our account. With
+      HttpOnly cookies, this is not possible. This makes <b>XSS attacks</b> (the one
+      we just described) harder to perform. It is a recognized best practice to
+      share any authentication data only with HttpOnly cookies. Using a
+      standard cookie for authentication is a known vulnerability we should
+      avoid in any case.
+    </small>
+  </div>
+</div>

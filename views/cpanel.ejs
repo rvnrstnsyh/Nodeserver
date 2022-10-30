@@ -1,0 +1,22 @@
+<div id="cpanel_container">
+  <h1>cPanel</h1>
+  <hr />
+  <br/ >
+  <% if (auth.email) { %>
+    <h4>Authenticated</h4>
+    <small>ID: <%= auth._id %></small>
+    <br />
+    <small>Username: <%= auth.username %></small>
+    <br />
+    <small>Email: <%= auth.email %></small>
+    <br />
+    <small>IAT: <%= auth.iat %></small>
+    <br />
+    <small>EXP: <%= auth.exp %></small>
+  <% } %>
+  <br />
+  <br />
+  <form action="/api/sign_out" method="post">
+    <input type="submit" value="Sign Out">
+  </form>
+</div>

@@ -12,7 +12,7 @@
 "use strict";
 
 // ! +--------------------------------------------------------------------------+
-// ! | Dependencies                                                             |
+// ! | Dependencies and third parties                                           |
 // ! +--------------------------------------------------------------------------+
 import dotenv from "dotenv";
 import fs from "fs";
@@ -24,6 +24,8 @@ import PATH from "path";
 import expressLayouts from "express-ejs-layouts";
 import morgan from "morgan";
 import helmet from "helmet";
+import session from "express-session";
+import flash from "connect-flash";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -47,7 +49,7 @@ const CONF = {
 // ! +--------------------------------------------------------------------------+
 // ! | Cross-site request forgery (CSRF)                                        |
 // ! +--------------------------------------------------------------------------+
-import csrfProtection from "./app/middleware/Csrf.js";
+import * as middleware from "./app/middleware/_index.js";
 
 // ! +--------------------------------------------------------------------------+
 // ! | Global request limit, DDOS attack mitigation                             |
@@ -97,7 +99,16 @@ App.use((request, response, next) => {
 })
     .use(morgan(accessLogFormat, { stream: accessLogStream }))
     .use(cors(CONF))
-    .use(cookieParser())
+    .use(cookieParser("secret"))
+    .use(
+        session({
+            cookie: { maxAge: 6000 },
+            secret: "secret",
+            resave: true,
+            saveUninitialized: true,
+        })
+    )
+    .use(flash())
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
     .set("view engine", "ejs")
@@ -105,14 +116,7 @@ App.use((request, response, next) => {
     .use(express.static(PATH.join(__dirname + "/public")))
     .use("/api", RESTful_API)
     .use("/", SSR ? webRoutes : express.static(PATH.join(__dirname, "/dist")))
-    .get(/.*/, csrfProtection, (request, response) => {
-        response
-            .cookie("nodeserver_key", request.csrfToken())
-            .render(PATH.join(__dirname, SSR ? "/views/home" : "/dist/index"), {
-                csrfToken: request.csrfToken(),
-                layout: "../layouts/indexssr",
-            });
-    });
+    .get(/.*/, (request, response) => response.sendStatus(404));
 
 // ! +--------------------------------------------------------------------------+
 // ! | Database connection (Default MongoDB)                                    |

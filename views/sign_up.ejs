@@ -1,0 +1,58 @@
+<div id="signup_container">
+  <div class="warp">
+    <h3> Server-side rendering </h3>
+  
+    <% if (successMsg.length !== 0) { %>
+      <small><%= successMsg %></small>
+    <% } %>
+  
+    <br />
+    <h6 class="lead_title">Sign Up</h6>
+    <form action="/api/sign_up" method="post" id="signup_form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <input type="text" name="username" placeholder="Username" />
+        <br />
+        <input type="text" name="email" placeholder="Email" />
+        <br />
+        <input type="password" name="signup_password" placeholder="Password" />
+        <br />
+        <input type="password" name="confirm_password" placeholder="Confirm" />
+        <br />
+        <input type="submit" value="Sign Up" />
+    </form>
+
+    <div>
+        <% if (typeof errorsMsg !== undefined) { %>
+            <% errorsMsg.forEach(error => { %>
+              <small><%= error.msg %></small>
+              <br />
+            <% }) %>
+        <% } %>
+    </div>
+
+    <br />
+    <a href="/"><small>Click here to Sign In</small></a>
+    <br />
+    <br />
+
+    <div class="notebook_signup">
+      <small>This proves that CSRF really work as they should:</small><br />
+      <small><b><%= csrfToken %></b></small>
+    </div>
+
+    <br />
+
+    <h4>
+      <img src="assets/img/noun-cookies-1342244.svg" alt="httponly" class="img_one">
+      Cross-site request forgery (CSRF)
+    </h4>
+    <hr />
+    <small>
+      Cross-site request forgery (also known as CSRF) is a web security
+      vulnerability that allows an attacker to induce users to perform actions
+      that they do not intend to perform. It allows an attacker to partly
+      circumvent the same origin policy, which is designed to prevent different
+      websites from interfering with each other.
+    </small>
+  </div>
+</div>

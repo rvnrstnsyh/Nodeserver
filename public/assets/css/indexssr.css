@@ -53,5 +53,34 @@ a {
 }
 
 #noscript {
+    padding: 10px;
+    color: red;
+}
+
+#signin_container,
+#signup_container,
+#cpanel_container {
+    padding: 10px;
+    max-width: 517px;
+}
+#signin_container .warp .img_one,
+#signup_container .warp .img_one {
+    max-width: 85px;
+    margin-bottom: -20px;
+}
+
+#signin_form input,
+#signup_form input,
+.lead_title {
+    margin-bottom: 5px;
+}
+
+.notebook_signin,
+.notebook_signup {
+    font-size: 0.8em;
+}
+
+.notebook_signin small b,
+.notebook_signup small b {
     color: red;
 }

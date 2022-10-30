@@ -15,6 +15,7 @@ install(){
 
   yarn add \
             argon2@latest \
+            connect-flash@latest \
             cookie-parser@latest \
             cors@latest \
             crypto-js@latest \
@@ -27,6 +28,8 @@ install(){
             express@latest \
             express-ejs-layouts@latest \
             express-rate-limit@latest \
+            express-session@latest \
+            express-validator@latest \
             helmet@latest \
             jsonwebtoken@latest \
             moment-timezone@latest \
@@ -41,6 +44,7 @@ install(){
 
   npm install \
             argon2@latest \
+            connect-flash@latest \
             cookie-parser@latest \
             cors@latest \
             crypto-js@latest \
@@ -53,6 +57,8 @@ install(){
             express@latest \
             express-ejs-layouts@latest \
             express-rate-limit@latest \
+            express-session@latest \
+            express-validator@latest \
             helmet@latest \
             jsonwebtoken@latest \
             moment-timezone@latest \

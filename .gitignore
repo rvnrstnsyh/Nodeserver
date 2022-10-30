@@ -25,6 +25,7 @@
 # log
 access.log*
 npm-debug.log*
+package-lock*
 yarn-debug.log*
 yarn-error.log*
 yarn.lock*
