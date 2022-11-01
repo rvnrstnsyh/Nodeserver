@@ -51,13 +51,14 @@ export default class Auth {
                     return response.clearCookie("session").redirect("/");
                 } else {
                     const user = await UserModel.findOne({ email: auth.email });
+                    const deviceMatch = request.useragent.source === auth.agent;
                     let tokenExists = false;
 
                     user.session.forEach((token) => {
                         if (token.value === valid) tokenExists = true;
                     });
 
-                    if (!tokenExists) {
+                    if (!tokenExists || !deviceMatch) {
                         return response.clearCookie("session").redirect("/");
                     } else {
                         request.body.auth = auth;

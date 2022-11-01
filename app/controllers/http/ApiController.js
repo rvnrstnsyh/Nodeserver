@@ -50,6 +50,7 @@ export default class ApiController {
         const credentials = {
             _id: user._id,
             uuidv4: uuidv4(),
+            agent: request.useragent.source,
             username: user.username,
             email: user.email,
         };
