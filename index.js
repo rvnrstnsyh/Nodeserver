@@ -26,6 +26,7 @@ import morgan from "morgan";
 import helmet from "helmet";
 import session from "express-session";
 import flash from "connect-flash";
+import useragent from "express-useragent";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -110,6 +111,7 @@ App.use((request, response, next) => {
     )
     .use(flash())
     .use(express.json())
+    .use(useragent.express())
     .use(express.urlencoded({ extended: true }))
     .set("view engine", "ejs")
     .use(expressLayouts)

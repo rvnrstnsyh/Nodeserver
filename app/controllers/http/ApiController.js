@@ -58,6 +58,7 @@ export default class ApiController {
 
         const session = {
             uuidv4: credentials.uuidv4,
+            agent: request.useragent.source,
             value: newToken.session,
         };
 
