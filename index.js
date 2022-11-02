@@ -120,13 +120,15 @@ App.use((request, response, next) => {
     .use("/", SSR ? webRoutes : express.static(PATH.join(__dirname, "/dist")))
     .get(/.*/, middleware.csrf, (request, response) => {
         if (SSR) {
+            // ? Server-side Rendering
             return response.sendStatus(404);
         } else {
+            // ? Front-End Framework
             return response
                 .cookie("nodeserver_key", request.csrfToken())
                 .render(PATH.join(__dirname, "/dist/index"), {
                     csrfToken: request.csrfToken(),
-                    layout: "../layouts/indexssr",
+                    layout: "../layouts/indexfe",
                 });
         }
     });

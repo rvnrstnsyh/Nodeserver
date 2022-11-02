@@ -35,9 +35,10 @@ install(){
             moment-timezone@latest \
             mongoose@latest \
             morgan@latest \
-            nodemon@latest \
+            --dev nodemon@latest \
             socket.io@latest \
             svg-captcha@latest \
+            --dev tailwindcss@latest \
             uuid@latest && \
 
   cp .env.example .env && yarn dev
@@ -66,9 +67,10 @@ install(){
             moment-timezone@latest \
             mongoose@latest \
             morgan@latest \
-            nodemon@latest \
+            --dev nodemon@latest \
             socket.io@latest \
             svg-captcha@latest \
+            --dev tailwindcss@latest \
             uuid@latest && \
 
   cp .env.example .env && npm run dev

@@ -15,7 +15,9 @@
     },
     "scripts": {
         "dev": "nodemon index",
-        "start": "node index"
+        "start": "node index",
+        "watch": "npx tailwindcss -i ./public/assets/css/init.css -o ./public/assets/css/style.css --watch",
+        "minify": "npx tailwindcss -o ./public/assets/css/style.css --minify"
     },
     "keywords": [
         "nodejs",
@@ -61,6 +63,7 @@
         "uuid": "^9.0.0"
     },
     "devDependencies": {
-        "nodemon": "^2.0.20"
+        "nodemon": "^2.0.20",
+        "tailwindcss": "^3.2.1"
     }
 }
