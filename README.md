@@ -16,6 +16,7 @@ Nodeserver is a Back-End server template or framework that has been prepared in 
 - Model view controller (MVC)
 - Server-side rendering (SSR)
 - Templating engine (EJS)
+- Tailwind CSS
 - Cross-origin resource sharing (CORS)
 - Cross-site request forgery (CSRF)
 - Request limit, DDOS attack mitigation
