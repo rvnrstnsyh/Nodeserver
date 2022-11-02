@@ -10,6 +10,18 @@
 */
 
 @font-face {
+    font-family: "Adler";
+    src: url("../font/Adler.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Bohemian Typewriter";
+    src: url("../font/Bohemian\ Typewriter.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Ghostwriter";
+    src: url("../font/GHOSTWRITER.TTF") format("truetype");
+}
+@font-face {
     font-family: "Rounded Elegance";
     src: url("../font/Rounded_Elegance.ttf") format("truetype");
 }
@@ -45,6 +57,11 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Bohemian Typewriter";
+}
+
+body {
+    background: #f9f9f9;
 }
 
 a {
@@ -64,6 +81,7 @@ a {
     padding: 10px;
     max-width: 517px;
 }
+
 #signin_container .warp .img_one,
 #signup_container .warp .img_one,
 #error_handler_container .warp .img_one {
@@ -71,9 +89,18 @@ a {
     margin-bottom: -20px;
 }
 
+#signin_container .watermark,
+#signup_container .watermark,
+#cpanel_container .watermark {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
 #signin_form input,
 #signup_form input,
 .lead_title {
+    min-width: 206px;
     margin-bottom: 5px;
 }
 
