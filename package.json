@@ -16,7 +16,7 @@
     "scripts": {
         "dev": "nodemon index",
         "start": "node index",
-        "watch": "npx tailwindcss -i ./public/assets/css/init.css -o ./public/assets/css/style.css --watch",
+        "watch": "npx tailwindcss -i ./public/assets/css/tailwindcss -o ./public/assets/css/style.css --watch",
         "minify": "npx tailwindcss -o ./public/assets/css/style.css --minify"
     },
     "keywords": [
