@@ -20,7 +20,7 @@ export default class WebController {
      * @return render HTML [EJS]
      */
     static async sign_in(request, response) {
-        const { data, text, config } = CaptchaFactory.create();
+        const { base64, text, config } = CaptchaFactory.create();
 
         return response
             .status(200)
@@ -30,12 +30,12 @@ export default class WebController {
                 layout: "../layouts/indexssr",
                 successMsg: request.flash("success"),
                 errorsMsg: request.flash("error"),
-                captcha: data,
+                captcha: base64,
                 invalid_captcha: request.flash("invalid_captcha"),
             });
     }
     static async sign_up(request, response) {
-        const { data, text, config } = CaptchaFactory.create();
+        const { base64, text, config } = CaptchaFactory.create();
 
         return response
             .status(200)
@@ -45,7 +45,7 @@ export default class WebController {
                 layout: "../layouts/indexssr",
                 successMsg: request.flash("success"),
                 errorsMsg: request.flash("error"),
-                captcha: data,
+                captcha: base64,
                 invalid_captcha: request.flash("invalid_captcha"),
             });
     }

@@ -15,6 +15,7 @@ install(){
 
   yarn add \
             argon2@latest \
+            btoa@latest \
             connect-flash@latest \
             cookie-parser@latest \
             cors@latest \
@@ -38,6 +39,7 @@ install(){
             --dev nodemon@latest \
             socket.io@latest \
             svg-captcha@latest \
+            svg2img@latest \
             --dev tailwindcss@latest \
             uuid@latest && \
 
@@ -47,6 +49,7 @@ install(){
 
   npm install \
             argon2@latest \
+            btoa@latest \
             connect-flash@latest \
             cookie-parser@latest \
             cors@latest \
@@ -70,6 +73,7 @@ install(){
             --dev nodemon@latest \
             socket.io@latest \
             svg-captcha@latest \
+            svg2img@latest \
             --dev tailwindcss@latest \
             uuid@latest && \
 

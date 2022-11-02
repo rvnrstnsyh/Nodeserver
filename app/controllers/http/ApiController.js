@@ -16,7 +16,7 @@ import argon2 from "argon2";
 import moment from "moment-timezone";
 import UserFinder from "../../../functions/UserFinder.js";
 import TokenFactory from "../../../functions/TokenFactory.js";
-import CaptchaFactory from "../../../functions/CaptchaFactory.js";
+import CookieConfig from "../../../functions/Cookie.js";
 import dotenv from "dotenv";
 import { validationResult } from "express-validator";
 import { v4 as uuidv4 } from "uuid";
@@ -44,7 +44,6 @@ export default class ApiController {
 
         // ? execute sign in
         const { identity } = request.body;
-        const { config } = CaptchaFactory.create();
         const user = await UserFinder.find(identity);
 
         const credentials = {
@@ -70,7 +69,7 @@ export default class ApiController {
 
         return response
             .status(200)
-            .cookie("session", newToken.session, config)
+            .cookie("session", newToken.session, CookieConfig)
             .redirect("/cpanel");
     }
 

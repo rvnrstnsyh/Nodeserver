@@ -1,6 +1,6 @@
 {
     "name": "nodeserver",
-    "version": "1.2.7",
+    "version": "1.3.0",
     "description": "Back-End node server",
     "main": "index.js",
     "type": "module",
@@ -16,7 +16,7 @@
     "scripts": {
         "dev": "nodemon index",
         "start": "node index",
-        "watch": "npx tailwindcss -i ./public/assets/css/tailwindcss -o ./public/assets/css/style.css --watch",
+        "watch": "npx tailwindcss -i ./public/assets/css/tailwind.css -o ./public/assets/css/style.css --watch",
         "minify": "npx tailwindcss -o ./public/assets/css/style.css --minify"
     },
     "keywords": [
@@ -37,6 +37,7 @@
     },
     "dependencies": {
         "argon2": "^0.30.1",
+        "btoa": "^1.2.1",
         "connect-flash": "^0.1.1",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
@@ -64,6 +65,7 @@
     },
     "devDependencies": {
         "nodemon": "^2.0.20",
+        "svg2img": "^1.0.0-beta.2",
         "tailwindcss": "^3.2.1"
     }
 }

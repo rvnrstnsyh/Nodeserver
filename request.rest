@@ -6,3 +6,9 @@
 # | GitHub    : https://github.com/rvnrstnsyh
 # | GitLab    : https://gitlab.com/rvnrstnsyh
 # |
+
+GET http://localhost:3000
+
+###
+
+GET http://localhost:3000/sign_up

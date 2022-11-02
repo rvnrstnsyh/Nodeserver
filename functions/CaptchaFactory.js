@@ -13,6 +13,8 @@
 
 import svgCaptcha from "svg-captcha";
 import CryptoJS from "crypto-js";
+import svg2img from "svg2img";
+import btoa from "btoa";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -35,9 +37,17 @@ export default class CaptchaFactory {
             maxAge: 24 * 60 * 60 * 1000, // ? 1 day
             secure: ssl,
         };
-        const data = captcha.data;
+        const svg = captcha.data;
         const text = CryptoJS.SHA256(captcha.text).toString();
 
-        return { data, text, config };
+        const base64Svg = "data:image/svg+xml;base64," + btoa(svg);
+        const base64Img = "data:image/gif;base64,";
+
+        let base64 = "";
+        svg2img(base64Svg, (error, buffer) => {
+            return (base64 = base64Img + buffer.toString("base64"));
+        });
+
+        return { svg, base64, text, config };
     }
 }

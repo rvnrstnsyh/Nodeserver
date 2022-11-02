@@ -22,6 +22,7 @@ Nodeserver is a Back-End server template or framework that has been prepared in 
 - Request limit, DDOS attack mitigation
 - RESTful API
 - Authentication and Authorization
+- Captcha base64
 - Argon2 hashing
 - Web socket
 - Front-End framework support

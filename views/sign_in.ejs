@@ -15,10 +15,8 @@
         <input type="password" name="signin_password" placeholder="Password" />
         <br />
         <% if (captcha) { %>
-        <div class="captcha_svg">
-            <%- captcha %>
-        </div>
-          <% } %>
+          <img src="<%= captcha %>" alt="captcha">
+        <% } %>
         <br />
         <input type="text" name="captcha_plain" placeholder="CAPTCHA" />
         <br />
