@@ -21,7 +21,7 @@ export default class Captcha {
      *  !-- VERIFY (Middleware)
      *  validate captcha
      *
-     * @return redirect
+     * @return redirect url or next
      */
     static verify(request, response, next) {
         const plain = CryptoJS.SHA256(request.body.captcha_plain).toString();
@@ -31,7 +31,7 @@ export default class Captcha {
 
         if (!match) {
             request.flash("invalid_captcha", "Invalid captcha.");
-            return response.redirect(previous);
+            return response.status(301).redirect(previous);
         } else {
             return next();
         }

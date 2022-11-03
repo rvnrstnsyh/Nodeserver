@@ -11,9 +11,9 @@
 
 "use strict";
 
-import UserModel from "../models/User.js";
-import security from "jsonwebtoken";
 import dotenv from "dotenv";
+import security from "jsonwebtoken";
+import UserModel from "../models/User.js";
 
 dotenv.config();
 
@@ -22,14 +22,14 @@ export default class Auth {
      *  !-- VERIFY (Middleware)
      *  verify token before enter
      *
-     * @return redirect
+     * @return redirect url or next
      */
     static verify(request, response, next) {
         const valid = request.cookies.session;
         const accessKey = process.env.SESSION_KEY;
 
         if (!valid) {
-            return response.redirect("/");
+            return response.status(301).redirect("/");
         } else {
             security.verify(valid, accessKey, async (error, auth) => {
                 if (error) {
@@ -59,7 +59,10 @@ export default class Auth {
                     });
 
                     if (!tokenExists || !deviceMatch) {
-                        return response.clearCookie("session").redirect("/");
+                        return response
+                            .status(301)
+                            .clearCookie("session")
+                            .redirect("/");
                     } else {
                         request.body.auth = auth;
                         return next();
@@ -72,7 +75,7 @@ export default class Auth {
      *  !-- CHECK (Middleware)
      *  check token before enter
      *
-     * @return redirect
+     * @return redirect url or next
      */
     static check(request, response, next) {
         const valid = request.cookies.session;
@@ -96,9 +99,12 @@ export default class Auth {
                             }
                         });
                     });
-                    return response.clearCookie("session").redirect("/");
+                    return response
+                        .status(301)
+                        .clearCookie("session")
+                        .redirect("/");
                 } else {
-                    return response.redirect("/cpanel");
+                    return response.status(301).redirect("/cpanel");
                 }
             });
         } else {

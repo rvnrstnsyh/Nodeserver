@@ -39,11 +39,11 @@ install(){
             --dev nodemon@latest \
             socket.io@latest \
             svg-captcha@latest \
-            svg2img@latest \
+            --dev svg2img@latest \
             --dev tailwindcss@latest \
             uuid@latest && \
 
-  cp .env.example .env && yarn dev
+  cp .env.example .env && yarn watch
 } || { # Catch
   npm install && \
 
@@ -73,11 +73,11 @@ install(){
             --dev nodemon@latest \
             socket.io@latest \
             svg-captcha@latest \
-            svg2img@latest \
+            --dev svg2img@latest \
             --dev tailwindcss@latest \
             uuid@latest && \
 
-  cp .env.example .env && npm run dev
+  cp .env.example .env && npm run watch
  }
 }
 

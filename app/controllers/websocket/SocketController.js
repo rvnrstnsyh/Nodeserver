@@ -15,11 +15,13 @@ export default class SocketController {
     /**
      * !-- SOCKET.IO (Second Controller)
      *
-     * @return response data
+     * @return response message
      */
     static async handler(io) {
         io.on("connection", (socket) => {
-            socket.emit("connection_response", { message: "Socket connected" });
+            socket.emit("connection_response", {
+                message: "Socket connected.",
+            });
         });
     }
 }

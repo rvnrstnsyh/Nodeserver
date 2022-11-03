@@ -14,19 +14,20 @@
 // ! +--------------------------------------------------------------------------+
 // ! | Dependencies and third parties                                           |
 // ! +--------------------------------------------------------------------------+
-import dotenv from "dotenv";
 import fs from "fs";
-import http from "http";
-import express from "express";
 import cors from "cors";
-import cookieParser from "cookie-parser";
 import PATH from "path";
-import expressLayouts from "express-ejs-layouts";
+import http from "http";
+import dotenv from "dotenv";
 import morgan from "morgan";
 import helmet from "helmet";
-import session from "express-session";
+import express from "express";
 import flash from "connect-flash";
+import session from "express-session";
+import cookieParser from "cookie-parser";
 import useragent from "express-useragent";
+import expressLayouts from "express-ejs-layouts";
+
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -85,6 +86,8 @@ const accessLogStream = fs.createWriteStream(
     { flags: "a" }
 );
 const accessLogFormat = `:remote-addr - :remote-user [:date[iso]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"`;
+
+App.locals.baseURL = PATH.join("/");
 
 App.use((request, response, next) => {
     console.log(`${request.method} ${URI}${request.url}`);

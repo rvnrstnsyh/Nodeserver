@@ -11,8 +11,8 @@
 
 "use strict";
 
-import security from "jsonwebtoken";
 import dotenv from "dotenv";
+import security from "jsonwebtoken";
 
 dotenv.config();
 

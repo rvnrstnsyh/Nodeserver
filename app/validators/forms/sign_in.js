@@ -11,9 +11,11 @@
 
 "use strict";
 
-import { body } from "express-validator";
-import argon2 from "argon2";
 import UserFinder from "../../../functions/UserFinder.js";
+
+import argon2 from "argon2";
+
+import { body } from "express-validator";
 
 const sign_in = [
     body("identity").custom(async (value, { req }) => {

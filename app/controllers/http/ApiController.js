@@ -12,26 +12,25 @@
 "use strict";
 
 import UserModel from "../../models/User.js";
-import argon2 from "argon2";
-import moment from "moment-timezone";
+import CookieConfig from "../../../functions/Cookie.js";
 import UserFinder from "../../../functions/UserFinder.js";
 import TokenFactory from "../../../functions/TokenFactory.js";
-import CookieConfig from "../../../functions/Cookie.js";
+
+import argon2 from "argon2";
 import dotenv from "dotenv";
-import { validationResult } from "express-validator";
+import moment from "moment-timezone";
+
 import { v4 as uuidv4 } from "uuid";
+import { validationResult } from "express-validator";
 
 dotenv.config();
-
-const ssl = process.env.NODE_SECURE.toLowerCase() === "true" ? true : false;
-
 export default class ApiController {
     static async sign_in(request, response) {
         /**
          *  !-- SIGN IN
-         *  create new user
+         *  authenticate user
          *
-         * @return user username and email [JSON]
+         * @return redirect url
          */
 
         // ? request body validation
@@ -39,7 +38,7 @@ export default class ApiController {
 
         if (!valid.isEmpty()) {
             request.flash("error", valid.errors);
-            return response.redirect("/");
+            return response.status(301).redirect("/");
         }
 
         // ? execute sign in
@@ -68,7 +67,7 @@ export default class ApiController {
         );
 
         return response
-            .status(200)
+            .status(301)
             .cookie("session", newToken.session, CookieConfig)
             .redirect("/cpanel");
     }
@@ -78,7 +77,7 @@ export default class ApiController {
          *  !-- SIGN UP
          *  create new user
          *
-         * @return user username and email [JSON]
+         * @return redirect url
          */
 
         // ? request body validation
@@ -86,7 +85,7 @@ export default class ApiController {
 
         if (!valid.isEmpty()) {
             request.flash("error", valid.errors);
-            return response.redirect("/sign_up");
+            return response.status(301).redirect("/sign_up");
         }
 
         // ? execute sign up
@@ -104,7 +103,7 @@ export default class ApiController {
         const user = await newUser.save();
 
         request.flash("success", `${user.email} registered successfully`);
-        return response.redirect("/sign_up");
+        return response.status(301).redirect("/sign_up");
     }
     static async sign_out(request, response) {
         /**
@@ -134,10 +133,10 @@ export default class ApiController {
                     }
                 });
             });
-            return response.clearCookie("session").status(200).redirect("/");
+            return response.clearCookie("session").status(301).redirect("/");
         } catch (error) {
             console.log(error);
-            return response.status(200).redirect("/");
+            return response.status(301).redirect("/");
         }
     }
 }

@@ -28,7 +28,7 @@ export default class Error {
             request.flash("invalid", message);
             return next();
         } catch (error) {
-            return response.redirect("/");
+            return response.status(301).redirect("/");
         }
     }
 }

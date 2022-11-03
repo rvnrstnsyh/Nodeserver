@@ -40,7 +40,11 @@ Nodeserver is a Back-End server template or framework that has been prepared in 
 First create a MongoDB database (default **nodeserver_db**), configurable in `.env` file.
 ```shell
 $ git clone https://gitlab.com/rvnrstnsyh/nodeserver.git
-$ cd nodeserver && bash install.sh
+$ cd nodeserver && yarn ignite
+```
+The `ignite` command will install all required dependencies and watching tailwind css. let this process run, and open a new terminal to run the web server.
+```shell
+$ yarn dev
 ```
 Open in browser on default host and port http://localhost:3000
 

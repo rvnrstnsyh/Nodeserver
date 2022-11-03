@@ -11,15 +11,12 @@
 
 "use strict";
 
-import svgCaptcha from "svg-captcha";
-import CryptoJS from "crypto-js";
-import svg2img from "svg2img";
+import * as config from "../functions/Cookie.js";
+
 import btoa from "btoa";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const ssl = process.env.NODE_SECURE.toLowerCase() === "true" ? true : false;
+import svg2img from "svg2img";
+import CryptoJS from "crypto-js";
+import svgCaptcha from "svg-captcha";
 
 export default class CaptchaFactory {
     /**
@@ -32,11 +29,6 @@ export default class CaptchaFactory {
         svgCaptcha.options.width = 206;
 
         const captcha = svgCaptcha.create({ size: 7, noise: 3 });
-        const config = {
-            httpOnly: true,
-            maxAge: 24 * 60 * 60 * 1000, // ? 1 day
-            secure: ssl,
-        };
         const svg = captcha.data;
         const text = CryptoJS.SHA256(captcha.text).toString();
 

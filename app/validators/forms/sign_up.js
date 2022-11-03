@@ -11,8 +11,9 @@
 
 "use strict";
 
-import { body, check } from "express-validator";
 import UserFinder from "../../../functions/UserFinder.js";
+
+import { body, check } from "express-validator";
 
 const sign_up = [
     body("username").custom(async (value, { req }) => {
