@@ -42,7 +42,7 @@ First create a MongoDB database (default **nodeserver_db**), configurable in `.e
 $ git clone https://gitlab.com/rvnrstnsyh/nodeserver.git
 $ cd nodeserver && yarn ignite
 ```
-The `ignite` command will install all required dependencies and watching tailwind css. let this process run, and open a new terminal to run the web server.
+The `ignite` command will install all required dependencies and watching tailwind css. Let this process run, and open a new terminal to run the web server.
 ```shell
 $ yarn dev
 ```

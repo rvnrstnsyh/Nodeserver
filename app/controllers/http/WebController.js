@@ -20,11 +20,11 @@ export default class WebController {
      * @return render HTML [EJS]
      */
     static async sign_in(request, response) {
-        const { base64, text, config } = CaptchaFactory.create();
+        const { base64, text, cookieConfig } = CaptchaFactory.create();
 
         return response
             .status(200)
-            .cookie("captcha", text, config)
+            .cookie("captcha", text, cookieConfig)
             .render("sign_in", {
                 csrfToken: request.csrfToken(),
                 layout: "../layouts/indexssr",
@@ -35,11 +35,11 @@ export default class WebController {
             });
     }
     static async sign_up(request, response) {
-        const { base64, text, config } = CaptchaFactory.create();
+        const { base64, text, cookieConfig } = CaptchaFactory.create();
 
         return response
             .status(200)
-            .cookie("captcha", text, config)
+            .cookie("captcha", text, cookieConfig)
             .render("sign_up", {
                 csrfToken: request.csrfToken(),
                 layout: "../layouts/indexssr",

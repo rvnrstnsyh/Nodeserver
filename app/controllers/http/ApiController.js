@@ -12,7 +12,7 @@
 "use strict";
 
 import UserModel from "../../models/User.js";
-import CookieConfig from "../../../functions/Cookie.js";
+import cookieConfig from "../../../functions/Cookie.js";
 import UserFinder from "../../../functions/UserFinder.js";
 import TokenFactory from "../../../functions/TokenFactory.js";
 
@@ -68,7 +68,7 @@ export default class ApiController {
 
         return response
             .status(301)
-            .cookie("session", newToken.session, CookieConfig)
+            .cookie("session", newToken.session, cookieConfig)
             .redirect("/cpanel");
     }
 

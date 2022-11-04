@@ -106,7 +106,12 @@ App.use((request, response, next) => {
     .use(cookieParser("secret"))
     .use(
         session({
-            cookie: { maxAge: 3600 },
+            cookie: {
+                httpOnly: true,
+                maxAge: 24 * 60 * 60 * 1000,
+                sameSite: "strict",
+                secure: false,
+            },
             secret: "secret",
             resave: true,
             saveUninitialized: true,

@@ -11,7 +11,7 @@
 
 "use strict";
 
-import * as config from "../functions/Cookie.js";
+import cookieConfig from "../functions/Cookie.js";
 
 import btoa from "btoa";
 import svg2img from "svg2img";
@@ -40,6 +40,6 @@ export default class CaptchaFactory {
             return (base64 = base64Img + buffer.toString("base64"));
         });
 
-        return { svg, base64, text, config };
+        return { svg, base64, text, cookieConfig };
     }
 }

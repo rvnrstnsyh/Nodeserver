@@ -29,11 +29,11 @@ const route = express.Router();
 // ! | Cross-site request forgery (CSRF) Global middleware for web SSR          |
 // ! +--------------------------------------------------------------------------+
 import * as middleware from "../app/middleware/_index.js";
-import CookieConfig from "../functions/Cookie.js";
+import cookieConfig from "../functions/Cookie.js";
 
 route.use(middleware.csrf, (request, response, next) => {
-    response.cookie("from", request.url, CookieConfig);
-    response.cookie("nodeserver_key", request.csrfToken(), CookieConfig);
+    response.cookie("from", request.url, cookieConfig);
+    response.cookie("nodeserver_key", request.csrfToken(), cookieConfig);
     next();
 });
 
