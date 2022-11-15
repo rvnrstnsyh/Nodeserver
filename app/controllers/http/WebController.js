@@ -11,6 +11,7 @@
 
 "use strict";
 
+import pv from "../../../public/index.js";
 import CaptchaFactory from "../../../functions/CaptchaFactory.js";
 
 export default class WebController {
@@ -28,6 +29,7 @@ export default class WebController {
             .render("sign_in", {
                 csrfToken: request.csrfToken(),
                 layout: "../layouts/indexssr",
+                assets: pv,
                 successMsg: request.flash("success"),
                 errorsMsg: request.flash("error"),
                 captcha: base64,
@@ -43,6 +45,7 @@ export default class WebController {
             .render("sign_up", {
                 csrfToken: request.csrfToken(),
                 layout: "../layouts/indexssr",
+                assets: pv,
                 successMsg: request.flash("success"),
                 errorsMsg: request.flash("error"),
                 captcha: base64,
@@ -53,6 +56,7 @@ export default class WebController {
         return response.status(200).render("cpanel", {
             csrfToken: request.csrfToken(),
             layout: "../layouts/indexssr",
+            assets: pv,
             successMsg: request.flash("success"),
             errorsMsg: request.flash("error"),
             auth: request.body.auth,
@@ -62,6 +66,7 @@ export default class WebController {
         return response.status(200).render("error_handler", {
             csrfToken: request.csrfToken(),
             layout: "../layouts/indexssr",
+            assets: pv,
             successMsg: request.flash("success"),
             errorsMsg: request.flash("error"),
             invalid: request.flash("invalid"),

@@ -4,11 +4,9 @@
         <meta http-equiv="Content-Type" charset="text/html; UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Custom CSS -->
         <link rel="stylesheet" href="<%= baseURL %>assets/css/indexssr.css" />
-        <!-- Tailwind CSS -->
-        <!-- <link href="<%= baseURL %>assets/css/style.css" rel="stylesheet"> -->
-        <link rel="icon" href="<%= baseURL %>favicon.ico" />
+        <!-- <link href="<%= baseURL %>assets/css/tailwind.css" rel="stylesheet"> -->
+        <link rel="icon" href="<%= assets.faviconIco %>" />
         <title>re@rvnrstnsyh.dev</title>
     </head>
     <!-- © 2021 rvnrstnsyh -->
@@ -18,9 +16,6 @@
         </noscript>
         <% const README = "This nodeserver can also be used to render HTML on server side with template engine/view engine EJS , You can set it in 'web' routes and controllers" %>
         <%- body %>
-        <!-- Socket IO -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js" integrity="sha512-iWPnCISAd/J+ZacwV2mbNLCaPGRrRo5OS81lKTVPtRg1wGTC20Cfmp5Us5RcbLv42QLdbAWl0MI57yox5VecQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <!-- Custom JavaScript -->
         <script type="text/javascript" src="<%= baseURL %>assets/js/indexssr.js"></script>
     </body>
 </html>

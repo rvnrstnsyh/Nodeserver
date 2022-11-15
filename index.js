@@ -179,3 +179,8 @@ server.listen(PORT, () => {
         console.log(`CORS|CSRF enabled, nodeserver is listening on ${URI}`);
     }
 });
+
+server.on("connection", (socket) => {
+    // 10 minutes timeout
+    socket.setTimeout(10 * 60 * 1000);
+});
