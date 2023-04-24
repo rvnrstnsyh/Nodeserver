@@ -20,6 +20,9 @@ export default class Database {
     static sync() {
         mongoose
             .connect(process.env.DB_URI, {
+                maxPoolSize: 100,
+                socketTimeoutMS: 15000,
+                wtimeoutMS: 15000,
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             })

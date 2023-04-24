@@ -15,11 +15,11 @@
     },
     "scripts": {
         "dev": "nodemon index",
-        "ignite": "bash install.sh",
+        "setup": "node setup.js",
         "prod": "yarn minify && yarn dev",
         "watch": "npx tailwindcss -i ./public/assets/css/init.css -o ./public/assets/css/tailwind.css --watch",
         "minify": "npx tailwindcss -o ./public/assets/css/tailwind.css --minify",
-        "ext": "rm -rf node_modules yarn.lock package-lock.json access.log public/assets/css/tailwind.css .env"
+        "ext": "rm -rf node_modules public/assets/css/tailwind.css dist package-lock.json yarn.lock .env *.log *.pem"
     },
     "keywords": [
         "nodejs",
@@ -38,37 +38,37 @@
         "yarn": ">= 1.22.17"
     },
     "dependencies": {
-        "argon2": "^0.30.2",
+        "argon2": "^0.30.3",
         "btoa": "^1.2.1",
         "connect-flash": "^0.1.1",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
         "crypto-js": "^4.1.1",
         "csrf": "^3.1.0",
-        "dayjs": "^1.11.6",
+        "dayjs": "^1.11.7",
         "dotenv": "^16.0.3",
         "eccrypto": "^1.1.6",
-        "ejs": "^3.1.8",
+        "ejs": "^3.1.9",
         "elliptic": "^6.5.4",
         "express": "^4.18.2",
         "express-ejs-layouts": "^2.5.1",
         "express-rate-limit": "^6.7.0",
         "express-session": "^1.17.3",
         "express-useragent": "^1.0.15",
-        "express-validator": "^6.14.2",
-        "helmet": "^6.0.0",
-        "jsonwebtoken": "^8.5.1",
-        "moment-timezone": "^0.5.39",
-        "mongoose": "^6.7.2",
+        "express-validator": "^7.0.1",
+        "helmet": "^6.1.5",
+        "jsonwebtoken": "^9.0.0",
+        "moment-timezone": "^0.5.43",
+        "mongoose": "^7.0.4",
         "morgan": "^1.10.0",
-        "socket.io": "^4.5.3",
+        "socket.io": "^4.6.1",
         "svg-captcha": "^1.4.0",
         "uuid": "^9.0.0"
     },
     "devDependencies": {
-        "nodemon": "^2.0.20",
+        "nodemon": "^2.0.22",
         "svg2img": "^1.0.0-beta.2",
-        "tailwindcss": "^3.2.4"
+        "tailwindcss": "^3.3.1"
     },
     "nodemonConfig": {
         "ignore": [
