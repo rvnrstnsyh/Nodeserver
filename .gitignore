@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
+./updater.tmp.sh
 .pnp.js
 
 # testing
@@ -10,6 +11,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -23,9 +25,14 @@
 .vscode
 
 # log
-access.log*
-npm-debug.log*
+*.log*
+
+# package lock
 package-lock*
-yarn-debug.log*
-yarn-error.log*
 yarn.lock*
+
+# secret|public key / certificate
+*.pem
+*.cer
+*.crt
+*.der
